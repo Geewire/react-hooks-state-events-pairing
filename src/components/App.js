@@ -1,20 +1,23 @@
+import React, { useState } from 'react'
 import video from "../data/video.js";
+import Display from './Display'
+import Comments from './Comments'
 
 function App() {
-  console.log("Here's your data:", video);
+
+  const [showComments, setShowComments] = useState(false)
+
+  function handleToggle(){
+    setShowComments(!showComments)
+  }
+
+  // if (!comments) return null;
 
   return (
     <div className="App">
-      <iframe
-        width="919"
-        height="525"
-        src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-        frameBorder="0"
-        allowFullScreen
-        title="Thinking in React"
-      />
+      <Display video={video} toggle={handleToggle} showComments={showComments} />
+      <Comments toggleHide={showComments} comments={video.comments} />
     </div>
   );
 }
-
-export default App;
+   export default App;
